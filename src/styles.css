@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web|Anton|Montserrat|Signika+Negative&display=swap');
+
+.t1 {
+    font-family: "Titillium Web", sans-serif;
+    color: snow;
+}
+
+.t2 {
+    font-family: "Signika Negative", serif;
+    font-variant: small-caps;
+    color: snow;
+    font-weight: bolder;
+}
+
+.t3 {
+    font-family: "Anton", serif;
+    color: snow;
+    text-shadow: 4px 3px black;
+}
+
+.t4 {
+    font-family: "Montserrat", serif;
+    color: snow;
+    font-weight: lighter;
+}
+
+.shadow-1 {
+    text-shadow: 4px 3px black;
+}
+
+.shadow-2 {
+    text-shadow: 3px 2px black;
+}
+
+.shadow-3 {
+    text-shadow: 2px 1px black;
+}
+
+.shadow-4 {
+    text-shadow: 1px 1px black;
+}
+
+.x5 {
+    font-size: clamp(18pt, calc(24px + 2vw), 42pt);
+}
+
+.x4 {
+    font-size: clamp(18pt, calc(16px + 1.5vw), 36pt);
+}
+
+.x3 {
+    font-size: clamp(18pt, calc(15px + 1vw), 28pt);
+}
+
+.xx-large {
+    font-size: calc(13px + .7vw);
+}
+
+.x-large {
+    font-size: calc(13px + 0.5vw);
+}
+
+.large {
+    font-size: clamp(12pt, calc(13px + 0.4vw), 24pt);
+}
+
+.medium {
+    font-size: clamp(12pt, calc(12px + 0.3vw), 16pt);
+}
+
+.small {
+    font-size: clamp(12pt, calc(12px + 0.15vw), 14pt);
+}
+
+.xsmall {
+    font-size: calc(12px);
+}
+
+.no-border {
+    border-radius: 0;
+}
