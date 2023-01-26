@@ -1,25 +1,30 @@
 <template>
-  <v-data-iterator :items="sides" hide-default-footer>
-    <template>
-      <v-row>
-        <v-col v-for="(item, n) in sides"
-               class="my-5"
-               :key="n"
-               cols="12" sm="6" md="6" lg="6" xl="6"
-               style="height: 100%; overflow: hidden">
-          <div class="mx-10" style="height: 100%">
-            <p v-if="$vuetify.breakpoint.smAndDown" class="t2 x5 text-center shadow-3">{{ item.name }}</p>
-            <v-lazy :value="true" :min-height="minLazy">
-              <v-img contain class="elevation-5" :src="item.src"></v-img>
-            </v-lazy>
-            <p v-if="$vuetify.breakpoint.mdAndUp" class="t2 x4 text-center mt-2 shadow-2">{{ item.name }}</p>
-            <p v-if="$vuetify.breakpoint.mdAndUp" class="t4 medium text-center mx-10 shadow-3">{{ item.desc }}</p>
-            <p v-if="$vuetify.breakpoint.smAndDown" class="t4 large text-center mt-5">{{ item.desc }}</p>
-          </div>
-        </v-col>
+  <div>
+    <v-row v-if="$vuetify.breakpoint.smAndUp" justify="space-around">
+      <v-col v-for="(item, i) in sides" :key="i" :class="isMobile ? '' : 'my-2'" :cols="isMobile ? 12 : 6"
+             style="height: 100%; overflow: hidden">
+        <div class="mx-10">
+          <v-lazy :value="true" :min-height="minLazy">
+            <v-img contain class="elevation-5" max-width="60vw" :src="item.src"></v-img>
+          </v-lazy>
+          <p class="t1 x3 mt-2 mb-0 text-center">{{ item.name }}</p>
+          <v-divider />
+          <p class="t4 medium text-center ma-2">{{ item.desc }}</p>
+        </div>
+      </v-col>
+    </v-row>
+
+    <v-row v-if="$vuetify.breakpoint.xs" v-for="(item, x) in sides" :key="x" justify="space-around">
+      <v-row justify="space-around" class="ma-5">
+        <span class="t2 x5 text-center" style="width: 100%;">{{ item.name }}</span>
+        <v-lazy :value="true">
+          <v-img contain class="elevation-5" max-width="60vw" :src="item.src"></v-img>
+        </v-lazy>
+        <span class="t4 my-5 medium text-center" style="white-space: pre-wrap">{{ item.desc }}</span>
       </v-row>
-    </template>
-  </v-data-iterator>
+      <v-divider v-if="x < sides.length - 1" class="mx-5" dark></v-divider>
+    </v-row>
+  </div>
 </template>
 
 <script>
@@ -35,7 +40,7 @@ export default {
         },
         {
           name: "Smoked BBQ Beans",
-          desc: "Covered in our BBQ sauce with some onions, then smoked. The magical fruit just got more magical.",
+          desc: "Covered in our BBQ sauce and then smoked. The magical fruit just got more magical.",
           src : require("../../assets/food/beans-1.jpg")
         },
         {
@@ -45,12 +50,12 @@ export default {
         },
         {
           name: "Potato Salad",
-          desc: "Sort of like a loaded baked potato, but in salad form. Contains bacon, of course.",
+          desc: "Sort of like a loaded baked potato, but in salad form. Contains bacon, because why not?",
           src : require("../../assets/food/potato-salad-1.jpg")
         },
         {
           name: "Broccoli Salad",
-          desc: "A mix of broccoli and cauliflower with cranberries and bacon sprinkled in, covered in our in-house coleslaw sauce. "
+          desc: "A mix of broccoli, cauliflower, dried cranberries, and bacon of course. Covered in our in-house coleslaw dressing. "
                 + "Did we mention there's bacon?",
           src : require("../../assets/food/broccoli-salad-1.jpg")
         },
@@ -61,13 +66,18 @@ export default {
         },
         {
           name: "Brownies",
-          desc: "From an old family recipe. Not \"special,\" but they sure are sweet!",
+          desc: "From an old family recipe. Not \"special,\" but they sure are sweet! Doesn't contain any nuts.",
           src : require("../../assets/food/brownie-1.jpg")
         }
       ],
     }
   },
-  methods: {
+  computed: {
+    isMobile() {
+      return this.$vuetify.breakpoint.xs;
+    }
+  },
+  methods : {
     minLazy() {
       let a = this.$vuetify.breakpoint;
       return a.smAndDown ? 71.855 : a.mdOnly ? 143.71 : a.lgOnly ? 215.565 : 287.42;

@@ -2,93 +2,68 @@
   <div>
     <SectionHeader title="ABOUT US"></SectionHeader>
     <v-container fluid>
-      <v-row v-if="$vuetify.breakpoint.mdAndUp" justify="space-around" class="mx-10 shadow-3">
-        <v-col v-for="n in 2"
-               :key="n"
-               :cols="n === 1 ? 8 : undefined"
-               style="height: 100%; overflow: hidden">
-          <div v-if="n === 1" style="height: 100%">
-            <p class="t4 medium text-left" style="white-space: pre-wrap">{{ text.top }}</p>
-            <v-divider dark class="my-3"></v-divider>
-            <p class="t4 medium text-left" style="white-space: pre-wrap">{{ text.bottom }}</p>
-          </div>
-          <div v-else>
-            <v-lazy :value="true" min-height="351.33">
-              <v-img contain class="elevation-5" :src="require('../assets/storefront-1.jpg')"></v-img>
-            </v-lazy>
-            <v-dialog v-model="dialog" width="600px">
-              <template v-slot:activator="{ on }">
-                <v-btn block
-                       x-large
-                       dark
-                       class="mt-3 t4 shadow-3 no-border"
-                       style="white-space: normal"
-                       v-on="on">
-                                    <span class="medium t2" style="white-space: normal">
-                                        Read More...
-                                    </span>
-                </v-btn>
-              </template>
-              <v-card dark>
-                <v-card-title style="justify-content: center">
-                  <p class="t2 x4 shadow-2">The My 4 Sons Story</p>
-                </v-card-title>
-                <v-divider dark class="mx-5"></v-divider>
-                <v-card-text class="t4 mt-5 white--text small shadow-3" style="white-space: pre-line">
-                  {{ text.dialog }}
-                  <p class="mt-10 mr-10 text-right">- Matt, Owner</p>
-                </v-card-text>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn class="no-border"
-                         color="red darken-1"
-                         block
-                         outlined
-                         @click="dialog = false">Close
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
-          </div>
-        </v-col>
-      </v-row>
+      <v-row justify="space-around">
 
-      <v-row v-if="$vuetify.breakpoint.smAndDown" justify="center" class="mx-2">
-        <v-lazy :value="true">
-          <v-img class="elevation-5 mb-5" width="60vw" :src="require('../assets/storefront-1.jpg')"></v-img>
-        </v-lazy>
-        <p class="t4 medium text-center" style="white-space: pre-wrap">{{ text.top }}</p>
-        <v-divider dark class="mb-3 mt-1"></v-divider>
-        <p class="t4 medium text-center" style="white-space: pre-wrap">{{ text.bottom }}</p>
-        <v-dialog v-model="dialog" width="600px">
+        <v-col cols="5" v-if="!isMobile">
+          <v-lazy :value="true">
+            <v-img contain :src="require('../assets/storefront-1.jpg')"></v-img>
+          </v-lazy>
+
+          <v-dialog v-model="dialog" width="600px">
+            <template v-slot:activator="{ on }">
+              <v-btn block x-large dark class="mt-5 t4 no-border" style="white-space: normal" v-on="on">
+                <span class="medium t1" style="white-space: normal">Read More...</span>
+              </v-btn>
+            </template>
+            <v-card class="grey darken-3">
+              <v-card-title class="align-baseline">
+                <p class="flex mt-2 t2 x4">The My 4 Sons Story</p>
+                <v-tooltip left transition="scale-transition">
+                  <template v-slot:activator="{ on }">
+                    <v-hover v-slot="{ hover }">
+                      <v-btn icon :color="hover ? 'red' : ''" v-on="on" @click="dialog = false">
+                        <v-icon style="justify-self: right">mdi-close</v-icon>
+                      </v-btn>
+                    </v-hover>
+                  </template>
+                  <span>Close</span>
+                </v-tooltip>
+              </v-card-title>
+              <v-divider dark class="mx-5 my-n2"></v-divider>
+              <v-card-text class="t4 mt-5 white--text small" style="white-space: pre-line">
+                {{ text.dialog }}
+                <p class="mt-5 mr-10 text-right">- Matt, Owner</p>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
+        </v-col>
+
+        <v-col :cols="isMobile ? 12 : 7">
+          <p class="t4 medium text-left" style="white-space: pre-wrap">{{ text.top }}</p>
+          <v-divider dark class="my-3"></v-divider>
+          <p class="t4 medium text-left" style="white-space: pre-wrap">{{ text.bottom }}</p>
+        </v-col>
+
+        <v-dialog v-if="isMobile" v-model="dialog" width="600px" fullscreen>
           <template v-slot:activator="{ on }">
-            <v-btn block
-                   dark
-                   x-large
-                   class="mt-3 t4 shadow-3 text-wrap no-border"
-                   v-on="on">
-                            <span class="large t2" style="white-space: normal">
-                                Read More...
-                            </span>
+            <v-btn block dark x-large class="mt-3 text-wrap no-border" v-on="on">
+              <span class="large t1" style="white-space: normal">Read More...</span>
             </v-btn>
           </template>
           <v-card dark>
-            <v-card-title style="justify-content: center">
-              <p class="t2 x4 shadow-3">The My 4 Sons Story</p>
-            </v-card-title>
             <v-divider dark class="mx-5"></v-divider>
-            <v-card-text class="t4 mt-5 white--text medium shadow-3" style="white-space: pre-line">
+            <v-card-text class="t4 mt-5 white--text small" style="white-space: pre-line">
               {{ text.dialog }}
-              <p class="mt-10 mr-10 text-right">- Matt, Owner</p>
+              <p class="mt-5 mr-10 text-right">- Matt, Owner</p>
             </v-card-text>
             <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn class="no-border" color="red darken-1" block outlined @click="dialog = false">Close
-              </v-btn>
+              <v-btn x-large class="no-border t1" color="red darken-1" block @click="dialog = false">Close</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
+
       </v-row>
+
     </v-container>
   </div>
 </template>
@@ -125,9 +100,13 @@ export default {
       },
       dialog: false
     }
+  },
+  computed: {
+    isMobile() {
+      return this.$vuetify.breakpoint.xs;
+    }
   }
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

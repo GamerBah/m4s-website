@@ -1,43 +1,33 @@
-@import url('https://fonts.googleapis.com/css?family=Titillium+Web|Anton|Montserrat|Signika+Negative&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web|Patua+One|Staatliches&display=swap');
 
 .t1 {
-    font-family: "Titillium Web", sans-serif;
+    font-family: "Patua One", sans-serif;
     color: snow;
 }
 
 .t2 {
-    font-family: "Signika Negative", serif;
-    font-variant: small-caps;
+    font-family: "Staatliches", serif;
     color: snow;
-    font-weight: bolder;
-}
-
-.t3 {
-    font-family: "Anton", serif;
-    color: snow;
-    text-shadow: 4px 3px black;
 }
 
 .t4 {
-    font-family: "Montserrat", serif;
-    color: snow;
-    font-weight: lighter;
+    font-family: "Titillium Web", serif;
 }
 
 .shadow-1 {
-    text-shadow: 4px 3px black;
+    text-shadow: 4px 3px 4px black;
 }
 
 .shadow-2 {
-    text-shadow: 3px 2px black;
+    text-shadow: 3px 2px 3px black;
 }
 
 .shadow-3 {
-    text-shadow: 2px 1px black;
+    text-shadow: 2px 1px 2px black;
 }
 
 .shadow-4 {
-    text-shadow: 1px 1px black;
+    text-shadow: black 1px 1px 2px;
 }
 
 .x5 {
@@ -49,7 +39,7 @@
 }
 
 .x3 {
-    font-size: clamp(18pt, calc(15px + 1vw), 28pt);
+    font-size: clamp(16pt, calc(15px + 1vw), 28pt);
 }
 
 .xx-large {
@@ -69,11 +59,11 @@
 }
 
 .small {
-    font-size: clamp(12pt, calc(12px + 0.15vw), 14pt);
+    font-size: clamp(11pt, calc(12px + 0.15vw), 14pt);
 }
 
 .xsmall {
-    font-size: calc(12px);
+    font-size: clamp(10pt, calc(12px + 0.1vw), 12pt);
 }
 
 .no-border {

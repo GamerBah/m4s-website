@@ -1,29 +1,18 @@
 <template>
   <div>
     <v-app>
-      <v-app-bar app
-                 dark
-                 inverted-scroll
-                 class="elevation-10"
-                 style="z-index: 100">
-        <v-btn x-large elevation="0"
-               @click="$vuetify.goTo(Number(0), {duration: 750})"
-               height="115%"
+      <v-app-bar app dark inverted-scroll class="elevation-10" style="z-index: 100">
+        <v-btn x-large elevation="0" @click="$vuetify.goTo(Number(0), {duration: 750})" height="115%"
                style="border-radius: 0">
-                    <span class="main-title t1 x3 shadow-2">
+                    <span class="main-title t1 x3 shadow-3">
                         MY 4 SONS BBQ
                     </span>
         </v-btn>
 
-        <div class="no-gutters ml-10 hidden-md-and-down"
-             style="height: 115%">
-          <v-btn v-for="(section, i) in sections"
-                 :key="i"
-                 @click="$vuetify.goTo('#' + section.id, {duration: 750, offset: 75})"
-                 text
-                 height="100%"
-                 style="border-radius: 0"
-                 class="t2">
+        <div class="no-gutters ml-10 hidden-md-and-down" style="height: 115%">
+          <v-btn v-for="(section, i) in sections" :key="i"
+                 @click="$vuetify.goTo('#' + section.id, {duration: 750, offset: 75})" text height="100%"
+                 style="border-radius: 0" class="t2">
             <span class="large">{{ section.name }}</span>
           </v-btn>
         </div>
@@ -33,15 +22,10 @@
         <v-toolbar-items>
           <v-tooltip bottom transition="scale-transition" open-delay="500">
             <template v-slot:activator="{ on }">
-              <v-btn text
-                     color="yellow"
-                     target="_blank"
-                     href="https://my4sonsbbq.hrpos.heartland.us/"
-                     v-on="on">
+              <v-btn text color="yellow" target="_blank" href="https://my4sonsbbq.com/order-online" v-on="on">
                 <v-icon class="x3 shadow-3">mdi-silverware</v-icon>
-                <span class="t2 shadow-3 large hidden-sm-and-down"
-                      style="margin-left: 5px">
-                                    Online Ordering
+                <span class="t2 shadow-3 large hidden-sm-and-down ml-2">
+                                    Order Online
                                 </span>
               </v-btn>
             </template>
@@ -49,14 +33,9 @@
           </v-tooltip>
           <v-tooltip bottom transition="scale-transition" open-delay="500">
             <template v-slot:activator="{ on }">
-              <v-btn text
-                     color="primary"
-                     target="_blank"
-                     href="https://www.facebook.com/My4SonsBBQ/"
-                     v-on="on">
+              <v-btn text color="primary" target="_blank" href="https://www.facebook.com/My4SonsBBQ/" v-on="on">
                 <v-icon class="x3 shadow-3">mdi-facebook</v-icon>
-                <span class="t2 shadow-3 large hidden-sm-and-down"
-                      style="margin-left: 5px">
+                <span class="t2 shadow-3 large hidden-sm-and-down ml-2">
                                     Facebook
                                 </span>
               </v-btn>
@@ -65,16 +44,11 @@
           </v-tooltip>
           <v-tooltip bottom transition="scale-transition" open-delay="500">
             <template v-slot:activator="{ on }">
-              <v-btn text
-                     color="success"
-                     target="_blank"
-                     href="https://goo.gl/maps/LL4RGieJHAHXW8cz5"
-                     v-on="on">
+              <v-btn text color="success" target="_blank" href="https://goo.gl/maps/LL4RGieJHAHXW8cz5" v-on="on">
                 <v-icon class="x3 shadow-3">
                   mdi-google-maps
                 </v-icon>
-                <span class="t2 shadow-3 large hidden-sm-and-down"
-                      style="margin-left: 5px">
+                <span class="t2 shadow-3 large hidden-sm-and-down ml-2">
                                     Maps
                                 </span>
               </v-btn>
@@ -91,20 +65,13 @@
         <div class="main d-flex align-center" style="text-align: center;">
           <div style="width: 100vw; max-height: 100%">
             <transition name="fade" appear>
-              <img v-if="$vuetify.breakpoint.mdAndUp"
-                   class="overlay"
-                   :src="require('../assets/misc/overlay.png')"
+              <img v-if="$vuetify.breakpoint.mdAndUp" class="overlay" :src="require('../assets/misc/overlay.png')"
                    alt="image" />
-              <img v-if="$vuetify.breakpoint.smAndDown"
-                   class="overlay-sm"
-                   :src="require('../assets/misc/logo-transparent.png')"
-                   alt="image" />
+              <img v-if="$vuetify.breakpoint.smAndDown" class="overlay-sm"
+                   :src="require('../assets/misc/logo-transparent.png')" alt="image" />
             </transition>
             <br>
-            <v-btn icon
-                   large
-                   color="white"
-                   class="overlay floating hidden-sm-and-down"
+            <v-btn icon large color="white" class="overlay floating hidden-sm-and-down"
                    @click="$vuetify.goTo('#about-us', {duration: 750, offset: 75})">
               <v-icon class="shadow-2" style="font-size: calc(16px + 1.5vw)">mdi-chevron-double-down
               </v-icon>
@@ -120,32 +87,50 @@
             </div>
           </v-col>
         </v-row>
-        <v-row v-if="$vuetify.breakpoint.smAndDown"
-               :class="$vuetify.breakpoint.sm ? 'my-10' : 'my-n5'"
-               v-for="(section, i) in sections"
-               :key="i">
+        <v-row v-if="$vuetify.breakpoint.smAndDown" :class="$vuetify.breakpoint.sm ? 'my-10' : 'my-n5'"
+               v-for="(section, i) in sections" :key="i">
           <v-col v-for="n in 3" :key="n" :cols="contentCols(n)">
             <div v-if="n === 2" class="pa-2 pb-5 grey darken-3 elevation-10">
               <component :is="section.src" :id="section.id" />
             </div>
           </v-col>
         </v-row>
+
+        <v-row>
+          <v-col v-for="i in 3" :cols="i === 2 ? 6 : 2">
+            <v-dialog v-if="i === 2" v-model="notice" persistent max-width="600px" overlay-opacity=".8">
+              <v-card>
+                <v-card-title class="t2 justify-center">
+                  <p class="x4 my-5 red--text font-weight-bold">CLOSED FOR THE HOLIDAYS</p>
+                </v-card-title>
+                <v-card-text>
+                  <p class="t4 medium text-center">
+                    Merry Christmas from the My 4 Sons Family! We're spending the holidays together, which means that
+                    we'll be closed: </p>
+                  <p class="t1 large text-center my-5" style="font-weight: bolder">DECEMBER 27 - 31</p>
+                  <p class="t4 medium text-center">We'll be open again on Tuesday, January 3rd to start 2023!<br><br>We
+                                                   appreciate all the support in 2022, and we're excited for another
+                                                   year of BBQ!</p>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn block outlined large @click="notice = false">
+                    Okay!
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+          </v-col>
+        </v-row>
       </v-container>
+
       <v-footer elevation="10" class="red darken-4 text-center" height="75px">
                 <span class="t4 small mr-10 hidden-sm-and-down" style="vertical-align: center;">
                     &#169 {{ new Date().getFullYear() }} My 4 Sons Enterprises
                 </span>
-        <v-tooltip v-if="$vuetify.breakpoint.mdAndUp" top
-                   transition="scale-transition"
-                   v-for="(icon, i) in icons"
-                   color="grey darken-3"
-                   :key="i">
+        <v-tooltip v-if="$vuetify.breakpoint.mdAndUp" top transition="scale-transition" v-for="(icon, i) in icons"
+                   color="grey darken-3" :key="i">
           <template v-slot:activator="{ on }">
-            <v-btn class="mx-2"
-                   icon
-                   v-on="on"
-                   target="_blank"
-                   :href="icon.link">
+            <v-btn class="mx-2" icon v-on="on" target="_blank" :href="icon.link">
               <v-icon size="24px">{{ icon.src }}</v-icon>
             </v-btn>
           </template>
@@ -171,6 +156,7 @@ export default {
   name: "Home",
   data() {
     return {
+      notice  : false,
       active  : 0,
       sections: [
         {
@@ -252,25 +238,24 @@ export default {
   methods : {
     contentCols(n) {
       if (n === 2) {
-        let ar = this.aspectRatio();
-        console.log(ar.w + ":" + ar.h);
-        return 6;
+        switch (this.$vuetify.breakpoint.name) {
+          case "xs":
+            return 12
+          case "sm":
+            return 10
+          case "md":
+            return 8
+          case "lg":
+            return 6;
+          default:
+            return 5;
+        }
       }
       return undefined;
     },
     componentPadding() {
       if (this.$vuetify.breakpoint.mdAndUp) return "10";
-      return "n10";
-    },
-    aspectRatio() {
-      function gcd(a, b) {
-        return (b === 0) ? a : gcd(b, a % b);
-      }
-
-      let w = window.outerWidth;
-      let h = window.outerHeight;
-      let r = gcd(w, h);
-      return {w: w / r, h: h / r}
+      return "n5";
     },
   },
   computed: {
